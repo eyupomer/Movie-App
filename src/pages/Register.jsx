@@ -1,9 +1,79 @@
-import React from 'react'
-
 const Register = () => {
   return (
-    <div>Register</div>
-  )
-}
+    <div className="flex justify-center">
+      <div className="hidden lg:block min-w-[800px] min-h-[800px]">
+        <img
+          className="w-full h-full"
+          src={"https://picsum.photos/800/800"}
+          alt="Sample-movie"
+        />
+      </div>
+      <div className="flex-1 p-20 bg-gray-200">
+        <h1 className="text-4xl text-center mb-12">Register</h1>
+        <form>
+          <div className="flex flex-col gap-y-3">
+            <div className="flex flex-col gap-y-3 items-start">
+              <label className="pl-6 text-2xl" htmlFor="firstName inline">
+                First Name
+              </label>
+              <input
+                className="w-10/12 m-5 p-2 rounded-md border-2 focus:outline-none"
+                name="firstName"
+                id="firstName"
+                placeholder="Enter your first name."
+                type="text"
+                required
+              />
+            </div>
+            <div className="flex flex-col gap-y-3 items-start">
+              <label className="pl-6 text-2xl" htmlFor="lastName">
+                Last Name
+              </label>
+              <input
+                className="w-10/12 m-5 p-2 rounded-md border-2 focus:outline-none"
+                name="lastName"
+                id="lastName"
+                placeholder="Enter your last name."
+                type="text"
+                required
+              />
+            </div>
+            <div className="flex flex-col gap-y-3 items-start">
+              <label className="pl-6 text-2xl" htmlFor="email">
+                Email
+              </label>
+              <input
+                className="w-10/12 m-5 p-2 rounded-md border-2 focus:outline-none"
+                name="email"
+                id="email"
+                placeholder="Enter your email adress."
+                type="mail"
+                required
+              />
+            </div>
+            <div className="flex flex-col gap-y-1 items-start">
+              <label className="pl-6 text-2xl" htmlFor="password">
+                Password
+              </label>
+              <input
+                className="w-10/12 m-5 p-2 rounded-md border-2 focus:outline-none"
+                name="password"
+                id="password"
+                placeholder="Enter your password."
+                type="password"
+                required
+              />
+            </div>
+            <input
+              className="px-3 py-1 text-lg border-2 rounded-md cursor-pointer bg-blue-600 text-white w-full hover:bg-white hover:text-blue-600 duration-300 hover:border-blue-600"
+              value="Register"
+              type="submit"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
 
-export default Register
+export default Register;
