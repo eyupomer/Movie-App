@@ -1,12 +1,17 @@
 import { useState } from "react";
 import {FcGoogle} from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
+import { singIn } from "../auth/firebase";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    singIn(email, password, navigate)
   };
 
   return (
