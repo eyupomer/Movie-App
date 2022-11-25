@@ -11,7 +11,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    singIn(email, password, navigate)
+    singIn(email, password, navigate);
   };
 
   return (
