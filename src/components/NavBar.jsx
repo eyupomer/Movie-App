@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { logOut } from "../auth/firebase";
 
 //? Context
 import { AuthContext } from "../context/AuthContext";
@@ -24,6 +25,7 @@ const NavBar = () => {
           </h3>
           <button
             className="px-3 py-1 text-lg border-2 rounded-md cursor-pointer hover:bg-white hover:text-blue-600 duration-300"
+            onClick={() => logOut()}
           >
             Logout
           </button>

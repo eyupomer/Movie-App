@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {FcGoogle} from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
-import { singIn } from "../auth/firebase";
+import { signUpProvider, singIn } from "../auth/firebase";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -9,9 +9,13 @@ const Login = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     singIn(email, password, navigate);
+  };
+
+  const handleProviderLogin= () => {
+    signUpProvider(navigate);
   };
 
   return (
@@ -25,7 +29,7 @@ const Login = () => {
       </div>
       <div className="flex-1 p-20 bg-gray-200">
         <h1 className="text-4xl text-center mb-12">Login</h1>
-        <form id="register" onSubmit = {handleSubmit}>
+        <form id="register" onSubmit = {handleLogin}>
           <div className="flex flex-col gap-y-5">
             
             <div className="flex flex-col gap-y-1 items-start">
@@ -66,7 +70,7 @@ const Login = () => {
             />
           </div>
         </form>
-        <button className="mt-4 py-2 text-lg border-2 rounded-md bg-blue-600 text-white w-full hover:bg-white hover:text-blue-600 duration-300 hover:border-blue-600">
+        <button onClick={handleProviderLogin} className="mt-4 py-2 text-lg border-2 rounded-md bg-blue-600 text-white w-full hover:bg-white hover:text-blue-600 duration-300 hover:border-blue-600">
           Continue with Google <FcGoogle className="inline ml-2" size={22} />
         </button>
       </div>
