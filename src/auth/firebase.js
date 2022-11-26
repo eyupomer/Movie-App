@@ -79,7 +79,7 @@ export const signUpProvider = (navigate) => {
 //? yeni açılan pop-up ile giriş yapılması için kullanılan firebase metodu
     signInWithPopup(auth, provider)
   .then((result) => {
-    navigate("/main");
+    navigate("/");
     console.log(result)
   }).catch((error) => {
     console.log(error);
