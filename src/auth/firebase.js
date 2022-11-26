@@ -1,6 +1,7 @@
 import "firebase/auth";
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile, GoogleAuthProvider, signInWithPopup } from 'https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js';
+import { toastErrorNotify, toastSuccessNotify } from "../helpers/ToastNotify";
 
 
 const firebaseConfig = {
@@ -35,8 +36,9 @@ export const createUser = async (email, password, navigate, displayName) => {
             displayName: displayName,
           });
         navigate("/");
+        toastSuccessNotify("Registered successfully!")
     } catch (err) {
-        console.log(err)
+        toastErrorNotify(err.message)
     }
 };
 
@@ -50,9 +52,10 @@ export const singIn = async (email, password, navigate) => {
             password
         );
         navigate("/");
+        toastSuccessNotify("Logged in successfully!")
         console.log(userCredential);
     } catch (err) {
-        console.log(err)
+        toastErrorNotify(err.message)
     };
 };
 
@@ -69,7 +72,8 @@ export const userObserver = (setCurrentUser) => {
 
 //? kullanıcının çıkış yaptığını takip eden firebase metodu
 export const logOut = () => {
-    signOut(auth)
+    signOut(auth);
+    toastSuccessNotify("Logged out successfully!")
 };
 
 //? Google ile giriş için kullanılan firebase metodu
@@ -80,8 +84,9 @@ export const signUpProvider = (navigate) => {
     signInWithPopup(auth, provider)
   .then((result) => {
     navigate("/");
+    toastSuccessNotify("Logged in succesfully!")
     console.log(result)
-  }).catch((error) => {
-    console.log(error);
+  }).catch((err) => {
+    toastErrorNotify(err.message);
   });
 };

@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { toastWarnNotify } from "../helpers/ToastNotify";
 
 const IMG_API = "https://image.tmdb.org/t/p/w1280";
 const defaultImage =
@@ -7,6 +9,7 @@ const defaultImage =
 
 const MovieCard = ({ poster_path, title, vote_average, overview, id }) => {
   const { currentUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const setVoteClass = (vote) => {
     if (vote > 8) {
@@ -19,7 +22,10 @@ const MovieCard = ({ poster_path, title, vote_average, overview, id }) => {
   };
 
   return (
-    <div className="bg-blue-600 rounded-sm overflow-hidden m-4 w-[300px] relative cursor-pointer group">
+    <div onClick={() => {
+      navigate(`/moviedetail` + id);
+      !currentUser && toastWarnNotify("Please log in to see details");
+      }} className="bg-blue-600 rounded-sm overflow-hidden m-4 w-[300px] relative cursor-pointer group">
       <img
         className="object-cover h-[450px] max-w-full"
         src={poster_path ? IMG_API + poster_path : defaultImage}
